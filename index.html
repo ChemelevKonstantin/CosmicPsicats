@@ -109,7 +109,7 @@ main{flex:1;position:relative;overflow:hidden}
 .mission-reward{color:var(--accent-soft);font-size:11px}
 /* Котопедія */
 .icon-with-text{display:flex;align-items:center;gap:8px;}
-.icon-img{width:30px;height:30px;background-size:contain;background-repeat:no-repeat;background-position:center;font-size:18px;}
+.icon-img{width:40px;height:40px;background-size:contain;background-repeat:no-repeat;background-position:center;font-size:18px;}
 
 .cat-list{margin-top:8px;overflow-y:auto;font-size:12px;display:flex;flex-direction:column;gap:8px}
 .cat-panel{border-radius:12px;background:var(--g2);border:1px солid var(--g3);overflow:hidden}
@@ -312,8 +312,16 @@ main{flex:1;position:relative;overflow:hidden}
           </div>
         </div>
         <div class="btn-col">
-          <button class="btn btn-primary" id="btnStart">Висадитися</button>
-          <button class="btn btn-secondary" id="btnContinue">Продовжити</button>
+<button class="btn btn-primary icon-with-text" id="btnStart" data-emoji="🚀">
+  <span class="icon-img" id="iconStart"></span>
+  <span>Висадитися</span>
+</button>
+
+<button class="btn btn-secondary icon-with-text" id="btnContinue" data-emoji="⏯">
+  <span class="icon-img" id="iconContinue"></span>
+  <span>Продовжити</span>
+</button>
+
           <button class="btn btn-secondary icon-with-text" id="btnModes" data-emoji="📚"><span class="icon-img" id="iconCatopedia"></span><span>Котопедія</span></button>
 
         </div>
@@ -921,6 +929,13 @@ window.addEventListener('DOMContentLoaded',()=>{
   init();
 
 function loadIconWithFallback(el, imgPath){
+  if(!el) return;
+  const fallbackEmoji =
+    el.dataset.emoji ||
+    el.getAttribute('data-emoji') ||
+    (el.parentElement && (el.parentElement.dataset.emoji || el.parentElement.getAttribute('data-emoji'))) ||
+    '❔';
+
   const testImg = new Image();
   testImg.onload = () => {
     el.style.backgroundImage = `url('${imgPath}')`;
@@ -928,13 +943,16 @@ function loadIconWithFallback(el, imgPath){
   };
   testImg.onerror = () => {
     el.style.backgroundImage = 'none';
-    el.textContent = el.dataset.emoji || '❔';
+    el.textContent = fallbackEmoji;
   };
   testImg.src = imgPath;
 }
+
 loadIconWithFallback($('btnSettings'), 'images/icon_setup.png');
 loadIconWithFallback($('btnCoin'), 'images/icon_coin.png');
 loadIconWithFallback($('iconCatopedia'), 'images/icon_catopedia.png');
+loadIconWithFallback($('iconStart'), 'images/icon_new.png');
+loadIconWithFallback($('iconContinue'), 'images/icon_continue.png');
 
 
 
