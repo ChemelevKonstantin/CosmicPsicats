@@ -18,12 +18,17 @@ body{min-height:100vh;background:linear-gradient(180deg,var(--g1),var(--g0));col
 .bg-noise{position:fixed;inset:0;pointer-events:none;opacity:.35;z-index:0;background-image:url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0nMTAnIGhlaWdodD0nMTAnIHZpZXdCb3g9JzAgMCAxMCAxMCcgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJz48ZyBmaWxsPSdyZ2JhKDAsMCwwLDAuMyknPjxyZWN0IHg9JzAnIHk9JzAnIHdpZHRoPScxJyBoZWlnaHQ9JzEnIC8+PHJlY3QgeD0nNScgeT0nNScgd2lkdGg9JzEnIGhlaWdodD0nMScgLz48L2c+PC9zdmc+");background-size:6px 6px}
 header{display:flex;align-items:center;justify-content:space-between;padding:4px 2px 8px}
 .logo-wrap{display:flex;align-items:center;gap:10px}
-.logo-box{width:44px;height:44px;border-radius:12px;background:transparent;display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900;color:var(--accent);animation:logoFloat 2.6s ease-in-out infinite;cursor:pointer;}
-#gameLogo{  background: url('images/logo.png') center/cover no-repeat;}
+
 @keyframes logoFloat{0%{transform:translateY(0)}50%{transform:translateY(-2px) scale(1.03)}100%{transform:translateY(0)}}
-.game-title{display:flex;flex-direction:column;line-height:1.1}
-.game-title-main{text-transform:uppercase;font-size:16px;letter-spacing:.1em;font-weight:800;color:var(--accent);cursor:pointer}
-.game-title-sub{font-size:11px;letter-spacing:.14em;color:var(--muted)}
+
+.game-title{
+  width:360px;
+  height:128px;
+  background:url('images/title.png') center/contain no-repeat;
+  cursor:pointer;
+}
+
+
 .header-actions{display:flex;align-items:center;gap:6px}
 .icon-btn{
   width:34px;
@@ -45,7 +50,22 @@ header{display:flex;align-items:center;justify-content:space-between;padding:4px
 main{flex:1;position:relative;overflow:hidden}
 .screen{position:absolute;inset:0;padding-bottom:4px;display:flex;align-items:stretch;justify-content:center;opacity:0;pointer-events:none;transform:translateY(22px) scale(0.96);transition:opacity var(--t),transform var(--t)}
 .screen.active{opacity:1;pointer-events:auto;transform:translateY(0) scale(1)}
-.card{width:100%;max-width:480px;background:rgba(15,16,22,.94);border-radius:var(--rad);border:1px solid var(--g3);padding:12px 14px 10px;backdrop-filter:blur(10px);box-shadow:0 10px 22px rgba(0,0,0,.6);display:flex;flex-direction:column;min-height:100%;}
+
+.card{
+  width:100%;
+  max-width:480px;
+  background:
+    linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.75)),
+    url('images/card_bg.png') center/cover no-repeat;
+  border-radius:var(--rad);
+  border:1px solid var(--g3);
+  padding:12px 14px 10px;
+  box-shadow:0 10px 22px rgba(0,0,0,.6);
+  display:flex;
+  flex-direction:column;
+  min-height:100%;
+}
+
 .tag{text-transform:uppercase;font-size:11px;letter-spacing:.18em;color:var(--accent-soft);margin-bottom:6px}
 .hero-main{display:flex;align-items:center;gap:14px}
 .hero-avatar{
@@ -266,13 +286,13 @@ main{flex:1;position:relative;overflow:hidden}
 <div class="bg-noise"></div>
 <div class="app">
   <header>
-    <div class="logo-wrap">
-      <div class="logo-box" id="gameLogo"></div>
-      <div class="game-title">
-        <div class="game-title-main" id="titleMain">Космічні Псикоти</div>
-        <div class="game-title-sub">Демократія у будь-яку точку всесвіту</div>
-      </div>
-    </div>
+
+<div class="logo-wrap">
+  <div class="game-title" id="titleMain"></div>
+</div>
+
+
+
     <div class="header-actions">
 <button class="icon-btn" id="btnSettings" data-emoji="⚙️"></button>
 <button class="icon-btn" id="btnCoin" data-emoji="🪙"></button>
